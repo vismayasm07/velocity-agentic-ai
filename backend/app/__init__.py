@@ -1,0 +1,1 @@
+"""Velocity CRM backend application."""
