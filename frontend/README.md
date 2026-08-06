@@ -29,8 +29,17 @@ To learn more about Next.js, take a look at the following resources:
 
 You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
-## Deploy on Vercel
+## Deploy on Render
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Create a Render web service with the `frontend` root directory and configure:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```text
+Build Command: npm ci && npm run build
+Start Command: npm run start -- --hostname 0.0.0.0 --port $PORT
+NEXT_PUBLIC_API_URL: https://velocity-agentic-ai.onrender.com
+```
+
+Use `velocity-crm` as the service name to request
+`https://velocity-crm.onrender.com`. The name must be available in Render.
+Set the backend service's `FRONTEND_URL` to that exact HTTPS origin so CORS and
+Zoho OAuth redirects return to the deployed frontend.
