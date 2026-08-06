@@ -49,6 +49,10 @@ Apply pending schema migrations before starting the API:
 & .\.venv\Scripts\python.exe -m alembic upgrade head
 ```
 
+For Render, use `python start.py` as the service start command. The launcher
+applies pending migrations idempotently before starting Uvicorn on Render's
+`PORT`, preventing application seed data from running against an empty schema.
+
 The application seeds a default local admin at startup when the configured
 email does not exist. Development credentials are configured in the ignored
 `.env` file:
