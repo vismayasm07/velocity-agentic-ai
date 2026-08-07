@@ -1,6 +1,17 @@
 # Velocity CRM Agent - Progress
 
-Last updated: 2026-08-07
+Last updated: 2026-08-08
+
+## Continuous Integration
+
+- Added a GitHub Actions workflow for pushes and pull requests targeting
+  `main`, with concurrency cancellation for superseded runs.
+- Backend CI uses PostgreSQL 17 with pgvector, applies the complete Alembic
+  migration chain, and runs the full pytest suite with isolated CI settings.
+- Frontend CI installs from the committed lockfile and runs ESLint followed by
+  the Next.js production build.
+- Render remains responsible for deployment; CI does not access the production
+  database or production integration credentials.
 
 ## Operational Polish and Reliability Presentation
 
