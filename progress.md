@@ -12,6 +12,9 @@ Last updated: 2026-08-08
   the Next.js production build.
 - Render remains responsible for deployment; CI does not access the production
   database or production integration credentials.
+- Increased the backend job timeout to 30 minutes after the first cold-cache run
+  reached 27% with all completed tests passing before the 15-minute job limit;
+  upgraded official GitHub actions to Node 24-based releases.
 
 ## Operational Polish and Reliability Presentation
 
