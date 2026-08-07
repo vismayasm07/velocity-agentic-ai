@@ -370,6 +370,16 @@ async def reopen_recurred_incidents(session: AsyncSession) -> list[BottleneckInc
         result = detect_stalled_deal(deal, now, _rules(settings))
         if not result.is_stalled:
             continue
+        active_incident_id = await session.scalar(
+            select(BottleneckIncident.id).where(
+                BottleneckIncident.deal_id == incident.deal_id,
+                BottleneckIncident.incident_type == incident.incident_type,
+                BottleneckIncident.status == "open",
+                BottleneckIncident.id != incident.id,
+            )
+        )
+        if active_incident_id is not None:
+            continue
         incident.status = "open"
         incident.risk_score = result.risk_score
         incident.severity = result.severity

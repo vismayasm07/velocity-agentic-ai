@@ -9,7 +9,7 @@ from fastapi.testclient import TestClient
 from sqlalchemy import delete, func, select
 
 from app.database import async_session_factory, engine
-from app.main import app
+from app.main import app, monitoring_service
 from app.models import (
     AgentAnalysis,
     AgentAuditEvent,
@@ -29,13 +29,14 @@ created_deal_ids: list[UUID] = []
 @pytest.fixture(scope="module")
 def client() -> Iterator[TestClient]:
     with TestClient(app) as test_client:
+        assert test_client.portal is not None
+        test_client.portal.call(monitoring_service.stop)
         yield test_client
         async def cleanup() -> None:
             async with async_session_factory() as session:
                 await session.execute(delete(Deal).where(Deal.id.in_(created_deal_ids)))
                 await session.commit()
 
-        assert test_client.portal is not None
         test_client.portal.call(cleanup)
     asyncio.run(engine.dispose())
 

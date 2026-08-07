@@ -15,6 +15,19 @@ Last updated: 2026-08-08
 - Increased the backend job timeout to 30 minutes after the first cold-cache run
   reached 27% with all completed tests passing before the 15-minute job limit;
   upgraded official GitHub actions to Node 24-based releases.
+- Disabled async database connection pooling only in CI so connections are not
+  retained across the independent event loops used by backend test fixtures;
+  production keeps pooling enabled. CI monitoring remains enabled because the
+  monitoring suite validates scheduler lifecycle behavior.
+- Expanded `monitoring_runs.status` to 32 characters so the valid
+  `COMPLETED_WITH_ERRORS` state can be persisted instead of failing during a
+  background monitoring cycle and blocking test teardown.
+- Made recurrence processing skip resolved incidents that already have an open
+  sibling and isolated direct outcome-workflow tests from the background
+  scheduler to prevent unique-key and teardown races.
+- Validated the full backend suite under CI settings: 124 tests passed in 51.42
+  seconds; the prior knowledge-to-monitoring boundary passes 23 tests in 11.51
+  seconds.
 
 ## Operational Polish and Reliability Presentation
 

@@ -24,3 +24,9 @@ def test_database_url_uses_asyncpg(configured_url: str, expected_url: str) -> No
     settings = Settings(database_url=configured_url, _env_file=None)
 
     assert settings.database_url == expected_url
+
+
+def test_database_pooling_can_be_disabled() -> None:
+    settings = Settings(database_pooling_enabled=False, _env_file=None)
+
+    assert settings.database_pooling_enabled is False

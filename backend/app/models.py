@@ -191,7 +191,7 @@ class MonitoringRun(Base):
     incidents_created: Mapped[int] = mapped_column(Integer, default=0)
     incidents_updated: Mapped[int] = mapped_column(Integer, default=0)
     errors_encountered: Mapped[int] = mapped_column(Integer, default=0)
-    status: Mapped[str] = mapped_column(String(20), index=True)
+    status: Mapped[str] = mapped_column(String(32), index=True)
 
 
 class MonitoringSettings(Base):

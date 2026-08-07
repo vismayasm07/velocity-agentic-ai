@@ -220,6 +220,7 @@ def test_cycle_persists_statistics_and_audit_event(client: TestClient) -> None:
         "AUTOMATIC_ANALYSIS_COMPLETED",
         "AUTOMATIC_ANALYSIS_FAILED",
         "AUTOMATIC_ANALYSIS_SKIPPED",
+        "OUTCOME_VERIFICATION_FAILED",
     }
 
 

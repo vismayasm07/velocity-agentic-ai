@@ -43,7 +43,8 @@ jobs:
       ADMIN_EMAIL: admin@velocitycrm.com
       ADMIN_PASSWORD: VelocityAdmin@2026
       JWT_SECRET: velocity-ci-only-signing-secret
-      PROACTIVE_MONITORING_ENABLED: "false"
+      DATABASE_POOLING_ENABLED: "false"
+      PROACTIVE_MONITORING_ENABLED: "true"
       CRM_ADAPTER: local
       ZOHO_SCOPES: ZohoCRM.modules.deals.READ
 

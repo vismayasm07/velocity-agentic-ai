@@ -10,6 +10,7 @@ class Settings(BaseSettings):
     database_url: str = Field(
         default="postgresql+asyncpg://velocity_app:velocity_dev@localhost:5432/velocity"
     )
+    database_pooling_enabled: bool = True
     admin_email: EmailStr = "admin@velocitycrm.com"
     admin_password: str = Field(default="VelocityAdmin@2026", min_length=12)
     jwt_secret: str = Field(default="velocity-local-development-secret", min_length=24)
