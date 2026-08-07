@@ -46,6 +46,8 @@ jobs:
       DATABASE_POOLING_ENABLED: "false"
       PROACTIVE_MONITORING_ENABLED: "true"
       CRM_ADAPTER: local
+      ZOHO_CLIENT_ID: velocity-ci-client-id
+      ZOHO_CLIENT_SECRET: velocity-ci-client-secret
       ZOHO_SCOPES: ZohoCRM.modules.deals.READ
 
     steps:

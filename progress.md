@@ -25,9 +25,11 @@ Last updated: 2026-08-08
 - Made recurrence processing skip resolved incidents that already have an open
   sibling and isolated direct outcome-workflow tests from the background
   scheduler to prevent unique-key and teardown races.
+- Added non-production Zoho client credentials to CI after the OAuth module's
+  nine configured-integration tests returned 503 when only scopes were set.
 - Validated the full backend suite under CI settings: 124 tests passed in 51.42
-  seconds; the prior knowledge-to-monitoring boundary passes 23 tests in 11.51
-  seconds.
+  seconds; a fresh migrated database passes all 124 tests in 44.22 seconds, and
+  the previously failing Zoho OAuth module passes all 10 tests in 4.76 seconds.
 
 ## Operational Polish and Reliability Presentation
 
